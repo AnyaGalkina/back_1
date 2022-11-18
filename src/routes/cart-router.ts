@@ -1,33 +1,39 @@
 import {Request, Response, Router} from "express";
 
-export const productsRouter = Router({});
-const products = [{id: 1, title: "tomato"}, {id: 2, title: "orange"}];
+export const cartRouter = Router({});
+const orderList: OrderType[] = [];
+
+type ContactDetailsType = {
+    firstName: string;
+    surname: string;
+    address: string;
+    phone: string;
+};
+
+type OrderType = {
+    id: string;
+    productsCartList: ProductCartType[];
+    contactDetails: ContactDetailsType;
+    totalSum: number;
+}
+
+export type ProductCartType = {
+    productId: string;
+    imgSrc: string;
+    productName: string;
+    quantity: number;
+    pricePerUnit: number;
+};
 
 
-productsRouter.get("/", (req: Request, res: Response) => {
-    if (req.query.title) {
-        let searchString = req.query.title.toString();
-        res.send(products.filter(p => p.title.indexOf(searchString) > -1))
-    } else {
-        res.send(products)
+cartRouter.post("/", (req: Request, res: Response) => {
+    const newOrder: OrderType = {
+        id: (new Date() + "" ),
+        productsCartList: req.body.productsCartList,
+        contactDetails: req.body.contactDetails,
+        totalSum: req.body.totalSum,
     }
-})
-
-productsRouter.post("/", (req: Request, res: Response) => {
-    const newProduct = {
-        id: +(new Date()),
-        title: req.body.title
-    }
-    products.push(newProduct)
-    res.status(201).send(newProduct)
-})
-
-productsRouter.get("/:productTitle", (req: Request, res: Response) => {
-    let product = products.find(p => p.title === req.params.productTitle);
-    if (product) {
-        res.send(product);
-    } else {
-        res.send(404)
-    }
+    orderList.push(newOrder)
+    res.status(200).send(newOrder)
 })
 

@@ -1,5 +1,4 @@
 import {Request, Response, Router} from "express";
-import axios from "axios";
 
 export const newsRouter = Router({});
 

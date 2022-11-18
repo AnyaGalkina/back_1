@@ -34,6 +34,6 @@ cartRouter.post("/", (req: Request, res: Response) => {
         totalSum: req.body.totalSum,
     }
     orderList.push(newOrder)
-    res.status(200).send(newOrder)
+    res.status(200).send(newOrder);
 })
 

@@ -1,22 +1,23 @@
-import express from "express";
-import bodyParser from "body-parser";
-import {newsRouter} from "./routes/news-router";
-import {cakesRouter} from './routes/cakes-router';
+import express from 'express';
+import bodyParser from 'body-parser';
+import {newsRouter} from './routes/news-router';
+import {productsRouter} from './routes/products-router';
 import {cartRouter} from './routes/cart-router';
-import cors from "cors";
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000
 
 const parserMiddleware = bodyParser({});
-app.use(parserMiddleware);
 
+app.use(parserMiddleware);
 app.use(cors());
-app.use("/news", newsRouter);
-app.use("/products", cakesRouter);
-app.use("/cart", cartRouter);
+// app.use(requestCounterMiddleware);
+app.use('/news', newsRouter);
+app.use('/products', productsRouter);
+app.use('/cart', cartRouter);
 
 
 app.listen(port, () => {
-    console.log("listening port 3000");
+    console.log('listening port 3000');
 })

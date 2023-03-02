@@ -40,12 +40,17 @@ export const cartRepositories = {
             totalSum: newOrder.totalSum,
             email: newOrder.email
         }
+        orderList.push(createdOrder);
         try {
-            orderList.push(createdOrder);
             await emailManagers.sendEmailMessage(orderList[orderList.length - 1]);
+            console.log("send");
             return true;
         } catch (error) {
+            console.log(error);
+            console.error(error);
             return false;
+            // return null
         }
+        // return
     }
 }

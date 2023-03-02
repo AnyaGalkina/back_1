@@ -1,7 +1,5 @@
 import {emailAdapter} from '../adapters/email-adapter';
-
 // import type OrderType from '../repositories/cart-repository';
-
 
 const IMG_LINK = 'https://img.freepik.com/free-photo/top-view-delicious-donuts-concept_23-2148761711.jpg?w=1480&t=st=1677691828~exp=1677692428~hmac=bee492b4adaa13636e38511b4e8e5a25ea9330bae8384af72ab1e872fd2c2941';
 
@@ -10,7 +8,7 @@ class EmailManagers {
         const subject = 'Order Confirmation'
         const link = `https://anyagalkina.github.io/shop/#/products`
         const message = `
-        <div style="width: 600px; text-align: center; font-family: Farisi,sans-serif">
+        <div style="width: 600px; text-align: center; font-family: Figtree,sans-serif">
             <br/>
             <br/>
                 <h2 style="color: #161616">Your order were placed in Online Cakes Shop</h2>
@@ -39,7 +37,9 @@ class EmailManagers {
             <hr/>
             <br/>
             <div>
-                <img style="width: 600px" src='${IMG_LINK}' alt="Cake-image">
+                <img style="width: 600px" 
+                 src='${IMG_LINK}' 
+                alt="Cake-image">
             </div>
         </div>
        `

@@ -43,9 +43,17 @@ const products = [
     }
 ];
 
+type ProductType = {
+    productId: string;
+    pricePerUnit: number;
+    imgSrc: string;
+    productName: string;
+    productDescription: string;
+}
+
+
 export const productsRepository = {
-    findProducts(productName: string | null) {
-    // findProducts(productName: string | null | undefined) {
+    async findProducts(productName: string | null): Promise<ProductType[]> {
         if (productName) {
             // let searchString = productName.toString();
             const filteredProducts = products.filter(product => product.productName.indexOf(productName) > -1);

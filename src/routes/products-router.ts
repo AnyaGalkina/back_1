@@ -1,12 +1,19 @@
 import {Request, Response, Router} from 'express';
-import {productsRepository} from '../repositories/products-db-repository';
+import {productsService} from '../domain/products-service';
+import {HTTP_STATUSE} from '../enum';
 
 export const productsRouter = Router({});
 
 exports.productsRouter.get('/', async (req: Request, res: Response) => {
-    const foundProducts = await productsRepository.findProducts(req.query.productName
-        ? req.query.productName.toString()
-        : null);
-    console.log(foundProducts);
-    res.send(foundProducts);
+
+    const data = req.query;
+
+    const dataForRepository = {
+        productName: '',
+        pageNumber: 1,
+        pageSize: 2,
+        ...data
+    }
+    const foundProducts = await productsService.findProducts(dataForRepository);
+    res.status(HTTP_STATUSE.OK_200).send(foundProducts);
 });

@@ -1,4 +1,4 @@
-import {emailManagers} from '../managers/email-managers';
+import {emailManagers} from '../../managers/email-managers';
 
 const orderList: OrderType[] = [];
 

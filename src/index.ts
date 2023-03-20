@@ -13,7 +13,6 @@ const parserMiddleware = bodyParser({});
 
 app.use(parserMiddleware);
 app.use(cors());
-// app.use(requestCounterMiddleware);
 app.use('/news', newsRouter);
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
@@ -27,10 +26,4 @@ const PORT = process.env.PORT || 3001;
     })
 }
 
-
-
 startApp();
-
-// app.listen(port, () => {
-//     console.log('listening port 3000');
-// })
